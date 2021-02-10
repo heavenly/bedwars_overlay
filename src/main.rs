@@ -57,7 +57,14 @@ fn main() {
                 if !pl.has_data {
                     continue
                 }
-                println!("[{}*] {}: {}fk {}fd", pl.stars, pl.name, pl.final_kills, pl.final_deaths);
+                let fkdr = {
+                    if pl.final_deaths > 0 {
+                        (pl.final_kills as f32) / (pl.final_deaths as f32)
+                    } else {
+                        0
+                    }
+                };
+                println!("[{}*] {}: {} final kills, {} final deaths, {} fkdr", pl.stars, pl.name, pl.final_kills, pl.final_deaths, fkdr);
             }
             println!("[=====================]");
         }
